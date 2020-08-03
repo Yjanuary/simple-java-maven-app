@@ -8,15 +8,10 @@ pipeline {
             jdk 'jdk'
         }
         stages {
-            stage('build') {
-                steps {
-                    echo 'Building..'
-                    // 输出路径
-                    sh 'pwd'
-                    sh 'mvn --version'
-                    sh 'java -version'
-                    sh 'mvn clean install -Dmaven.test.skip=true'
-                }
+            stage('Build') {
+                        steps {
+                            sh 'mvn -B -DskipTests clean package'
+                        }
             }
             stage('Test') {
                         steps {
